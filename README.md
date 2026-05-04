@@ -1,123 +1,72 @@
+🧬 Simple Mutation Detector – Bioinformatics Analysis Tool
+📌 Project Overview
 
- Simple DNA Mutation Detector (BLAST + Alignment)
+The Simple Mutation Detector is a Python-based bioinformatics pipeline designed to identify and analyze genetic mutations by comparing a patient DNA sequence against a reference genome. The system integrates NCBI BLAST, sequence alignment algorithms, and protein-level translation to assess the biological significance of detected mutations.
 
-This project is a Python-based bioinformatics tool that detects DNA mutations by:
+This project demonstrates applied skills in computational biology, sequence analysis, and data-driven biological interpretation, bridging raw DNA data to meaningful mutation insights.
 
-1. Reading a patient DNA sequence from a file  
-2. Running NCBI BLAST to find the closest reference sequence  
-3. Fetching the reference DNA sequence from the NCBI database  
-4. Aligning patient and reference sequences  
-5. Detecting and reporting mutations (substitutions and gaps)
+⚙️ Key Features
+📂 Reads DNA sequences from FASTA/text files
+🌐 Integrates NCBI BLAST (blastn) for sequence matching
+🧬 Retrieves reference genomes using NCBI Entrez API
+🔬 Performs pairwise sequence alignment to detect variations
+⚡ Identifies mutations including:
+Substitutions
+Insertions
+Deletions
+🧪 Converts DNA sequences into protein sequences using BioPython
+🧠 Classifies mutation effects:
+Silent mutations
+Missense mutations
+Nonsense mutations (STOP gained)
+STOP loss mutations
+⚠️ Detects frameshift mutations
+📊 Computes a mutation severity score to estimate biological impact
+🧠 Technical Highlights
 
-It uses **Biopython** and real-time access to the NCBI nucleotide database.
+This project applies key concepts in computational biology:
 
----
+Sequence alignment using dynamic comparison of biological sequences
+Codon-based translation from DNA to protein
+Mutation impact classification based on protein-level changes
+Integration of external biological databases (NCBI)
+Handling of real-world biological data formats (FASTA/GenBank)
+🛠️ Tools & Technologies
+Python 3
+BioPython
+NCBI BLAST API
+NCBI Entrez Database
+Pairwise Sequence Alignment
+🔬 Workflow Pipeline
+Input DNA sequence from file
+Run BLAST search against NCBI database
+Retrieve closest reference genome
+Align patient vs reference sequence
+Detect base-level mutations
+Translate DNA into protein sequence
+Classify mutation type and biological impact
+Generate mutation severity score
+📊 Outcome
 
-## ⚙️ Features
+The system outputs:
 
--  Reads FASTA or raw DNA sequence files  
--  Runs online BLAST search (NCBI BLASTn)  
--  Fetches reference sequence using accession ID  
--  Performs pairwise sequence alignment  
--  Detects:
-- Base substitutions (A → G, C → T, etc.)
-- Insertions/deletions (gaps)
-- 📊 Outputs mutation positions and differences  
+Total number of mutations
+Detailed mutation positions
+Protein-level impact analysis
+Severity classification (benign → high-impact)
 
----
+This allows rapid assessment of whether a mutation is likely neutral or biologically significant.
 
-Example Output
-
-DNA Loaded
-Length: 1200
-Preview: ATGCGTACGTTAGC...
-
-Running BLAST...
-BLAST completed and saved to file
-
-Top Match Found:
-Title: Homo sapiens hemoglobin beta gene
-Accession: NM_000518
-
-Reference DNA retrieved
-Reference length: 1600
-
-Performing sequence alignment...
-Alignment complete
-
-Mutation Analysis
-Total mutations found: 12
-
-First 10 mutations:
-Position 266: G -> A
-Position 293: C -> T
-Position 310: T -> (gap)
-
-
----
-
-
-
-##  Requirements
-
-Install dependencies:
-
-```bash
-pip install biopython
-````
-
-## How to Run
-
-1. Save your DNA file (FASTA or raw sequence)
-
-2. Run the script:
-
-```bash
-python mutation_detector.py
-```
-
-3. Enter file path when prompted:
-
-```
-Enter the filepath of the DNA file:
-```
-
----
-
-## 🔬 Workflow Diagram
-
-```
-DNA File
-   ↓
-Read Sequence
-   ↓
-NCBI BLAST (find best match)
-   ↓
-Fetch Reference Genome
-   ↓
-Pairwise Alignment
-   ↓
-Mutation Detection
-   ↓
-Results Output
-```
-
----
-
-## Key Libraries Used
-
-* Bio.Blast (NCBIWWW, NCBIXML) → BLAST search
-* Bio.Entrez → Fetch sequences from NCBI
-* Bio.SeqIO → Parse FASTA files
-* Bio.Align.PairwiseAligner → Sequence alignment
-
----
-
-## ⚠️ Limitations
-
-* if the e score is less, the mutation is inaccurate.
-
----
-
-## Author : Prajan Malla
-
+🎯 Skills Demonstrated
+Bioinformatics pipeline design
+API integration (NCBI Entrez & BLAST)
+Sequence alignment and analysis
+Object-based biological data processing
+Python software engineering
+Computational genetics interpretation
+🚀 Future Improvements
+Web-based interface for easier usage
+Graphical mutation visualization
+Support for multiple gene comparison
+Machine learning model for mutation impact prediction
+Exportable clinical-style reports (PDF/CSV)

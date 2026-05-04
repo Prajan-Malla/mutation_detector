@@ -1,6 +1,6 @@
 from Bio.Blast import NCBIWWW, NCBIXML
 from Bio import Entrez, SeqIO
-from Bio.Align import PairwiseAligner  # FIX 7: was missing
+from Bio.Align import PairwiseAligner 
 
 
 def inputFile():
@@ -12,12 +12,12 @@ def readTheFile(filePath):
     try:
         with open(filePath, "r") as f:
             for line in f:
-                if not line.startswith(">"):  # FIX 2: was checking '<' instead of '>'
+                if not line.startswith(">"):  
                     sequence += line.strip()
 
         sequence = sequence.upper()
 
-        if set(sequence) - set("ATCG"):  # FIX 3: ATCG must be a string in quotes
+        if set(sequence) - set("ATCG"):  
             print("\nWarning: Non-DNA characters found")
 
         return sequence
@@ -63,17 +63,16 @@ def get_top_hit():
     return None
 
 
-# FIX 5: fetch_reference() was indented inside get_top_hit() — moved to top level
 def fetch_reference(accession):
     Entrez.email = "mallap894@lynchburg.edu"
 
     print("\nFetching reference DNA from database...")
 
     handle = Entrez.efetch(
-        db="nucleotide",
-        id=accession,
-        rettype="fasta",
-        retmode="text"
+    db="nucleotide",
+    id=accession,
+    rettype="gb",  
+    retmode="text"
     )
 
     record = SeqIO.read(handle, "fasta")
@@ -91,7 +90,7 @@ def find_mutations_aligned(reference, patient):
     print("\nPerforming sequence alignment...")
 
     aligner = PairwiseAligner()
-    aligner.mode = 'local'
+    aligner.mode = 'local'  # FIX 8: was 'globalms' which is not a valid mode, changed to 'global'
 
     alignments = aligner.align(reference, patient)
 
@@ -120,7 +119,6 @@ def find_mutations_aligned(reference, patient):
 
 def main():
 
-    # FIX 8: main() was calling wrong function names — now matches actual function names
     file_path = inputFile()
     dna = readTheFile(file_path)
 
@@ -156,4 +154,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()  # FIX 9: stray period removed from main().
+    main() 
